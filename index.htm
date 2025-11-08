@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lost & Found Portal</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #0f172a, #1e3a8a);
+        color: white;
+        min-height: 100vh;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .moving-text {
+        animation: moveText 12s linear infinite;
+      }
+
+      @keyframes moveText {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="text-gray-100">
+    <!-- Header -->
+    <header
+      class="text-center py-8 bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-500 shadow-lg"
+    >
+      <h1 class="text-4xl font-extrabold tracking-tight">Lost & Found Portal</h1>
+      <p class="moving-text text-yellow-300 mt-2 italic font-semibold">
+        Helping you reconnect with what matters most ✨
+      </p>
+    </header>
+
+    <!-- Navigation -->
+    <nav
+      class="glass mx-auto mt-4 w-[90%] md:w-[60%] flex justify-center gap-6 p-3 rounded-2xl shadow-lg"
+    >
+      <a href="#lost" class="hover:text-yellow-400 font-semibold">Lost Item</a>
+      <a href="#found" class="hover:text-yellow-400 font-semibold">Found Item</a>
+      <a href="#search" class="hover:text-yellow-400 font-semibold">Search</a>
+      <a href="#contact" class="hover:text-yellow-400 font-semibold">Contact</a>
+    </nav>
+
+    <!-- Sections -->
+    <main class="max-w-3xl mx-auto my-10 space-y-10 px-4">
+      <!-- Lost Item -->
+      <section id="lost" class="glass rounded-3xl p-8 shadow-xl">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+          <i data-lucide="alert-circle"></i> Report Lost Item
+        </h2>
+        <form id="lostForm" class="space-y-4">
+          <div>
+            <label class="font-semibold">Item Name</label>
+            <input
+              id="lostName"
+              type="text"
+              required
+              class="w-full rounded-lg border border-gray-300 text-black p-2 focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Description</label>
+            <textarea
+              id="lostDesc"
+              required
+              class="w-full rounded-lg border border-gray-300 text-black p-2 focus:ring-2 focus:ring-indigo-400"
+            ></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="font-semibold">Date Lost</label>
+              <input
+                id="lostDate"
+                type="date"
+                required
+                class="w-full rounded-lg border border-gray-300 text-black p-2"
+              />
+            </div>
+            <div>
+              <label class="font-semibold">Location</label>
+              <input
+                id="lostLocation"
+                type="text"
+                required
+                class="w-full rounded-lg border border-gray-300 text-black p-2"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold">Contact Info</label>
+            <input
+              id="lostContact"
+              type="text"
+              required
+              class="w-full rounded-lg border border-gray-300 text-black p-2"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Upload Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onchange="previewImage(event, 'lostPreview')"
+              class="w-full rounded-lg border border-gray-300 text-black p-2"
+            />
+            <img
+              id="lostPreview"
+              class="mt-3 rounded-xl max-h-48 hidden mx-auto"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg transition"
+          >
+            Submit Lost Item
+          </button>
+        </form>
+      </section>
+
+      <!-- Found Item -->
+      <section id="found" class="glass rounded-3xl p-8 shadow-xl">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+          <i data-lucide="check-circle"></i> Report Found Item
+        </h2>
+        <form id="foundForm" class="space-y-4">
+          <div>
+            <label class="font-semibold">Item Name</label>
+            <input
+              id="foundName"
+              type="text"
+              required
+              class="w-full rounded-lg border border-gray-300 text-black p-2"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Description</label>
+            <textarea
+              id="foundDesc"
+              required
+              class="w-full rounded-lg border border-gray-300 text-black p-2"
+            ></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="font-semibold">Date Found</label>
+              <input
+                id="foundDate"
+                type="date"
+                required
+                class="w-full rounded-lg border border-gray-300 text-black p-2"
+              />
+            </div>
+            <div>
+              <label class="font-semibold">Location</label>
+              <input
+                id="foundLocation"
+                type="text"
+                required
+                class="w-full rounded-lg border border-gray-300 text-black p-2"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="font-semibold">Contact Info</label>
+            <input
+              id="foundContact"
+              type="text"
+              required
+              class="w-full rounded-lg border border-gray-300 text-black p-2"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold">Upload Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onchange="previewImage(event, 'foundPreview')"
+              class="w-full rounded-lg border border-gray-300 text-black p-2"
+            />
+            <img
+              id="foundPreview"
+              class="mt-3 rounded-xl max-h-48 hidden mx-auto"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 rounded-lg transition"
+          >
+            Submit Found Item
+          </button>
+        </form>
+      </section>
+
+      <!-- Search -->
+      <section id="search" class="glass rounded-3xl p-8 shadow-xl">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+          <i data-lucide="search"></i> Search Lost & Found
+        </h2>
+        <form id="searchForm" class="flex flex-col md:flex-row gap-4">
+          <input
+            id="searchKeyword"
+            type="text"
+            placeholder="Enter keyword"
+            class="flex-1 rounded-lg border border-gray-300 text-black p-2"
+          />
+          <select
+            id="searchCategory"
+            class="rounded-lg border border-gray-300 text-black p-2"
+          >
+            <option value="all">All</option>
+            <option value="lost">Lost</option>
+            <option value="found">Found</option>
+          </select>
+          <button
+            type="submit"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+          >
+            Search
+          </button>
+        </form>
+
+        <div
+          id="searchResults"
+          class="mt-6 space-y-4 text-gray-200"
+        ></div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="glass rounded-3xl p-8 shadow-xl text-center">
+        <h2 class="text-2xl font-bold mb-4 flex justify-center items-center gap-2">
+          <i data-lucide="phone"></i> Contact Us
+        </h2>
+        <p><strong>Organization:</strong> Galgotias Management</p>
+        <p><strong>Email:</strong> support@lostfound.com</p>
+        <p><strong>Phone:</strong> +91 9142XXXXXX</p>
+      </section>
+    </main>
+
+    <footer
+      class="text-center py-4 bg-indigo-700 mt-10 text-sm text-gray-100 rounded-t-3xl"
+    >
+      &copy; 2025 Lost & Found System — All Rights Reserved.
+    </footer>
+
+    <script>
+      lucide.createIcons();
+
+      function previewImage(event, id) {
+        const file = event.target.files[0];
+        const img = document.getElementById(id);
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            img.src = e.target.result;
+            img.classList.remove("hidden");
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function saveItem(item) {
+        const data = JSON.parse(localStorage.getItem("items")) || [];
+        data.push(item);
+        localStorage.setItem("items", JSON.stringify(data));
+      }
+
+      document.getElementById("lostForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const item = {
+          type: "lost",
+          name: lostName.value,
+          desc: lostDesc.value,
+          date: lostDate.value,
+          location: lostLocation.value,
+          contact: lostContact.value,
+        };
+        saveItem(item);
+        alert("Lost item submitted successfully!");
+        e.target.reset();
+      });
+
+      document.getElementById("foundForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const item = {
+          type: "found",
+          name: foundName.value,
+          desc: foundDesc.value,
+          date: foundDate.value,
+          location: foundLocation.value,
+          contact: foundContact.value,
+        };
+        saveItem(item);
+        alert("Found item submitted successfully!");
+        e.target.reset();
+      });
+
+      document.getElementById("searchForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const keyword = searchKeyword.value.toLowerCase();
+        const category = searchCategory.value;
+        const results = document.getElementById("searchResults");
+        results.innerHTML = "";
+        const items = JSON.parse(localStorage.getItem("items")) || [];
+        const filtered = items.filter(
+          (item) =>
+            (category === "all" || item.type === category) &&
+            (item.name.toLowerCase().includes(keyword) ||
+              item.desc.toLowerCase().includes(keyword))
+        );
+        if (filtered.length === 0) {
+          results.innerHTML =
+            "<p class='text-gray-400 text-center'>No items found.</p>";
+        } else {
+          filtered.forEach((i) => {
+            results.innerHTML += `
+              <div class="p-4 rounded-xl bg-white/10 backdrop-blur border border-white/20">
+                <p><strong class="text-yellow-400">${i.type.toUpperCase()}</strong> — ${i.name}</p>
+                <p class="text-sm italic">${i.desc}</p>
+                <p class="text-xs text-gray-300">${i.location} | ${i.date}</p>
+                <p class="text-xs text-gray-400">Contact: ${i.contact}</p>
+              </div>`;
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
